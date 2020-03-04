@@ -137,8 +137,6 @@
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
-<!--                    <username>repoUserName</username>-->
-<!--                    <password>repoPassword</password>-->
                     <repository>192.168.128.135:5000/${project.artifactId}</repository>
                     <buildArgs>
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
