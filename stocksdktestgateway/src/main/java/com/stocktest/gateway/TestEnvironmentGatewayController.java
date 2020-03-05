@@ -13,15 +13,14 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/sdkversion")
-public class SdkVersionGatewayController {
-
-    private static final Logger logger = LoggerFactory.getLogger(SdkVersionGatewayController.class);
+@RequestMapping("/api/testenvironment")
+public class TestEnvironmentGatewayController {
+    private static final Logger logger = LoggerFactory.getLogger(TestEnvironmentGatewayController.class);
 
     @PostMapping("/new")
-    public JSONObject createSdkVersion(@RequestBody JSONObject params){
+    public JSONObject createTestEnvironment(@RequestBody JSONObject params){
         logger.info(params.toString());
-        params.put("title","sdkVersion"); //title表示collectionName
+        params.put("title","testenvironment"); //title表示collectionName
         RestTemplate restTemplate = new RestTemplate();//新建一个restTemplate对象
         String uri = "http://localhost:8088/api/documents/new"; //这是backend的createNewDocument对应的uri，不用更改
         ResponseEntity<JSONObject> response = restTemplate.postForEntity(uri,params,JSONObject.class); //在sdkVersion的collection中新建一个document
@@ -30,32 +29,25 @@ public class SdkVersionGatewayController {
         return response.getBody();
     }
 
-    @PostMapping()
-     public JSONArray getSdkVersion(@RequestBody(required = false) JSONArray filterFactors){
-         RestTemplate restTemplate = new RestTemplate();
-         Map<String, Object> params = new HashMap<>();
-         params.put("collectionName", "sdkVersion");
-         String uri;
-         if(filterFactors==null){
-            uri = "http://localhost:8088/api/documents/?collectionName={collectionName}";
-         }else{
-            uri = "http://localhost:8088/api/documents/?collectionName={collectionName}&filterFactors={filterFactors}";
-            params.put("filterFactors",filterFactors.toString());
-         }
-         ResponseEntity<JSONArray> response = restTemplate.getForEntity(uri,
-         JSONArray.class,params);
-         logger.info(response.getBody().toString());
-         return response.getBody();
-     }
+    @GetMapping()
+    public JSONArray getTestEnvironment(){
+        RestTemplate restTemplate = new RestTemplate();
+        String uri = "http://localhost:8088/api/documents/?collectionName={collectionName}";
+        Map<String, Object> params = new HashMap<>();
+        params.put("collectionName", "testenvironment");
+        ResponseEntity<JSONArray> response = restTemplate.getForEntity(uri, JSONArray.class,params);
+        logger.info(response.getBody().toString());
+        return response.getBody();
+    }
 
     @GetMapping("/{id}")
-    public JSONObject getSdkVersionById(@PathVariable String id){
+    public JSONObject getTestEnvironmentById(@PathVariable String id){
         RestTemplate restTemplate = new RestTemplate();
         String uri = "http://localhost:8088/api/documents/{id}?collectionName={collectionName}";
 
         Map<String, Object> params = new HashMap<>();
         params.put("id",id);
-        params.put("collectionName", "sdkVersion");
+        params.put("collectionName", "testenvironment");
 
         ResponseEntity<JSONObject> response = restTemplate.getForEntity(uri, JSONObject.class,params);
         logger.info(response.getBody().toString());
@@ -70,7 +62,7 @@ public class SdkVersionGatewayController {
 
         Map<String, String> pathParam = new HashMap<>();
         pathParam.put("id", id);
-        pathParam.put("collectionName","sdkVersion"); //只需考虑这行，将collectionName更改即可
+        pathParam.put("collectionName","testenvironment"); //只需考虑这行，将collectionName更改即可
 
         //http头信息，不用更改
         HttpHeaders headers = new HttpHeaders();
@@ -89,7 +81,7 @@ public class SdkVersionGatewayController {
 
         Map<String, Object> params = new HashMap<>();
         params.put("id",id);
-        params.put("collectionName", "sdkVersion");
+        params.put("collectionName", "testenvironment");
 
 
         HttpHeaders headers = new HttpHeaders();
