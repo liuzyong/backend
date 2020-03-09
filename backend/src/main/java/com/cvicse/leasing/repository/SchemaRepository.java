@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 @JaversSpringDataAuditable
-public interface SchemaRepository extends MongoRepository<Schema,String> {
+public interface SchemaRepository extends MongoRepository<Schema, String> {
     List<Schema> findAllByStatus(Status status);
 }
 

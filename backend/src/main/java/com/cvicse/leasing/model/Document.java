@@ -2,11 +2,12 @@ package com.cvicse.leasing.model;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-//import com.cvicse.leasing.auth.framwork.model.BaseEntity;
 import org.springframework.data.annotation.Id;
 
+//import com.cvicse.leasing.auth.framwork.model.BaseEntity;
+
 @org.springframework.data.mongodb.core.mapping.Document(collection = "Document")
-public class Document  {
+public class Document {
     @Id
     private String id;
 

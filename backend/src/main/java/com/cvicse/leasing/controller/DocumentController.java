@@ -3,20 +3,22 @@ package com.cvicse.leasing.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-//import com.cvicse.leasing.auth.framwork.auth.AuthModel;
-//import com.cvicse.leasing.auth.framwork.auth.enums.ActionType;
 import com.cvicse.leasing.model.Document;
 import com.cvicse.leasing.service.DocumentService;
-//import com.cvicse.leasingauthmanage.repository.UserRepository;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import com.google.gson.Gson;
+
 import java.util.List;
 import java.util.Set;
+
+//import com.cvicse.leasing.auth.framwork.auth.AuthModel;
+//import com.cvicse.leasing.auth.framwork.auth.enums.ActionType;
+//import com.cvicse.leasingauthmanage.repository.UserRepository;
 
 @RestController
 @CrossOrigin
@@ -31,15 +33,14 @@ public class DocumentController {
     private static final Logger logger = LoggerFactory.getLogger(DocumentController.class);
 
     @GetMapping("/collections")
-    public List<String> getCollections(){
+    public List<String> getCollections() {
         return documentService.getCollections();
     }
 
     @GetMapping("/collections/{collectionName}")
-    public Set<String> getDataKeys(@PathVariable String collectionName){
+    public Set<String> getDataKeys(@PathVariable String collectionName) {
         return documentService.getDataKeys(collectionName);
     }
-
 
 
     @PostMapping("/documents/new")
@@ -86,8 +87,7 @@ public class DocumentController {
             logger.info("get document by hierarchi " + hierarchical + " and filter " + filterFactors);
             JSONArray filters = JSONArray.parseArray(filterFactors);
             return documentService.getDocumentByHierarchicalQueries(id, collectionName, 1, filters);
-        }
-        else if (filterFactors.equals("null")) {
+        } else if (filterFactors.equals("null")) {
             Document document = documentService.getDocumentByIdInCollection(id, collectionName);
             Gson g = new Gson();
             String jsonString = g.toJson(document);

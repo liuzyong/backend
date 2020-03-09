@@ -14,11 +14,12 @@ public class Schema {
 
     private Status status;
 
-    public Schema(JSONObject schemaContent){
+    public Schema(JSONObject schemaContent) {
         this.schemaContent = schemaContent;
     }
 
-    public Schema(){}
+    public Schema() {
+    }
 
     public void setStatus(Status status) {
         this.status = status;
@@ -45,6 +46,6 @@ public class Schema {
     public String toString() {
         return String.format(
                 "Schema[id=%s,schemaContent='%s',schemaStatus='%s']",
-                id, schemaContent,status);
+                id, schemaContent, status);
     }
 }

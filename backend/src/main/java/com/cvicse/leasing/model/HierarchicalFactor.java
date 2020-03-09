@@ -11,12 +11,13 @@ public class HierarchicalFactor {
     private String foreignParam;
     private String as;
 
-    public HierarchicalFactor(JSONObject params){
+    public HierarchicalFactor(JSONObject params) {
         collectionName = params.getString("collectionName");
         localParam = params.getString("localParam");
         foreignParam = params.getString("foreignParam");
         as = params.getString("as");
     }
+
     public String getAs() {
         return as;
     }
@@ -32,10 +33,11 @@ public class HierarchicalFactor {
     public String getLocalParam() {
         return localParam;
     }
+
     @Override
     public String toString() {
         return String.format(
                 "HierarchicalFactor[collectionName=%s, localParam='%s',foreignParam='%s', as='%s']",
-                collectionName, localParam,foreignParam, as);
+                collectionName, localParam, foreignParam, as);
     }
 }

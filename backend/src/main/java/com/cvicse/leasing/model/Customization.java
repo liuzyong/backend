@@ -14,11 +14,12 @@ public class Customization {
 
     private Status status;
 
-    public Customization(JSONObject schemaContent){
+    public Customization(JSONObject schemaContent) {
         this.schemaContent = schemaContent;
     }
 
-    public Customization(){}
+    public Customization() {
+    }
 
     public void setStatus(Status status) {
         this.status = status;
@@ -45,6 +46,6 @@ public class Customization {
     public String toString() {
         return String.format(
                 "Customization[id=%s,schemaContent='%s',schemaStatus='%s']",
-                id, schemaContent,status);
+                id, schemaContent, status);
     }
 }

@@ -23,20 +23,20 @@ public class CustomizationController {
     private static final Logger logger = LoggerFactory.getLogger(CustomizationController.class);
 
     @PostMapping("/new")
-    public Customization createCustomization(@RequestBody JSONObject params){
+    public Customization createCustomization(@RequestBody JSONObject params) {
         logger.info("create new Customization. ");
         return schemaService.createCustomization(params);
     }
 
     @DeleteMapping("/{id}")
-    public List<Customization> deleteCustomization(@PathVariable String id){
-        logger.info("delete schema "+id);
+    public List<Customization> deleteCustomization(@PathVariable String id) {
+        logger.info("delete schema " + id);
         schemaService.deleteCustomization(id);
         return schemaService.getAllCustomizations();
     }
 
     @GetMapping
-    public List<Customization> getCustomizations(){
+    public List<Customization> getCustomizations() {
         logger.info("get all schemas");
         List<Customization> schemaList = schemaService.getAllCustomizations();
         for (int i = 0; i < schemaList.size(); i++) {
@@ -47,16 +47,16 @@ public class CustomizationController {
     }
 
     @GetMapping("/{id}")
-    public Customization getCustomizationById(@PathVariable String id){
-        logger.info("get schema by id "+id);
+    public Customization getCustomizationById(@PathVariable String id) {
+        logger.info("get schema by id " + id);
         return schemaService.getCustomizationById(id);
     }
 
     @PutMapping("/{id}")
     public Customization updateCustomization(@PathVariable String id
-            ,@RequestBody JSONObject params){
-        logger.info("update schema by Id "+ id);
-        return schemaService.updateCustomization(id,params);
+            , @RequestBody JSONObject params) {
+        logger.info("update schema by Id " + id);
+        return schemaService.updateCustomization(id, params);
     }
 
     @GetMapping("/{id}/commits")
@@ -64,7 +64,7 @@ public class CustomizationController {
             , @RequestParam(value = "commitId", defaultValue = "null") String commitId) {
         if (commitId.equals("null")) {
             try {
-                logger.info("Get Customization commits with schemaId "+ id);
+                logger.info("Get Customization commits with schemaId " + id);
                 return this.schemaService.trackCustomizationChangesWithJavers(id);
             } catch (Exception e) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customization Not Found.", e);

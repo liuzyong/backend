@@ -1,4 +1,5 @@
 package com.cvicse.leasing.model;
+
 /*
    EmbeddedPocumentPath & documentType:JSONObject/JSONArray
  */

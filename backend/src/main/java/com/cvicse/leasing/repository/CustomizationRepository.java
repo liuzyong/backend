@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 @JaversSpringDataAuditable
-public interface CustomizationRepository extends MongoRepository<Customization,String> {
+public interface CustomizationRepository extends MongoRepository<Customization, String> {
     List<Customization> findAllByStatus(Status status);
 }
 

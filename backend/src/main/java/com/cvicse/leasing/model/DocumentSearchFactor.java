@@ -10,11 +10,13 @@ public class DocumentSearchFactor {
     private String matchValue;
     private String matchProject;
 
-    public DocumentSearchFactor(JSONObject params){
+    public DocumentSearchFactor(JSONObject params) {
         matchKey = params.getString("key");
         matchValue = params.getString("value");
     }
-    public DocumentSearchFactor(){}
+
+    public DocumentSearchFactor() {
+    }
 
     public void setMatchProject(String matchProject) {
         this.matchProject = matchProject;
