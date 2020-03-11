@@ -1,8 +1,9 @@
 package com.cvicse.leasing.repository;
 
 import com.alibaba.fastjson.JSONObject;
+//import com.cvicse.leasing.auth.framwork.auth.QueryModel;
+//import com.cvicse.leasing.auth.framwork.auth.enums.ActionType;
 import com.cvicse.leasing.model.Document;
-import com.mongodb.client.result.UpdateResult;
 import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.aggregation.LookupOperation;
 import org.springframework.data.mongodb.core.aggregation.ProjectionOperation;
@@ -13,15 +14,11 @@ import org.springframework.data.mongodb.core.query.Update;
 import java.util.List;
 import java.util.Set;
 
-//import com.cvicse.leasing.auth.framwork.auth.QueryModel;
-//import com.cvicse.leasing.auth.framwork.auth.enums.ActionType;
-
 public interface CustomDocumentRepository {
-    //根据collectionName获取所有document
+     //根据collectionName获取所有document
     //行过滤
 //     @QueryModel(actionType = ActionType.QUERY)
     List<Document> findAllDocumentsInCollection(String collectionName);
-
     //查找所有的collection
     Set<String> findCollections();
 
@@ -39,21 +36,18 @@ public interface CustomDocumentRepository {
     List<Document> findDocumentsByCriterias(List<Criteria> criterias, String collectionName);
 
     //getOneDocumentByIdWithAggregations
-    JSONObject findDocumentByIdWithLookUpOperations(String id, String collectionName, Integer hierarchicalLevels, List<LookupOperation> lookupOperations);
+    JSONObject  findDocumentByIdWithLookUpOperations(String id, String collectionName, Integer hierarchicalLevels, List<LookupOperation> lookupOperations);
 
     //loop 查询内嵌文档
     List<JSONObject> findEmbeddedDocumentByAggregationOperations(String collectionName, List<AggregationOperation> aggregationOperations);
-
     //创建document
     Document createDocument(Document document);
-
     //保存document
     Document saveDocument(Document document);
 
     //删除document
     Document deleteDocument(Document document);
 
-    //update
-    UpdateResult updateFirst(Query query, Update update, String collectionname);
+    void updateEmbeddedDocument(String collectionName, Query query, Update update);
 
 }

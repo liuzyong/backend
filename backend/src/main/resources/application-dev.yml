@@ -9,5 +9,5 @@ spring:
       username: my_user
       password: password123
       port: 27017
-      host: localhost
+      host: 192.168.128.135
       database: test
