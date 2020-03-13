@@ -20,10 +20,6 @@ FROM openjdk:8-jre-alpine
 #VOLUME /tmp
 WORKDIR /app
 COPY --from=builder app/target/sddm-backend-0.0.1.jar  .
-ADD sddm-backend-0.0.1.jar /app.jar
-RUN touch /app.jar
 EXPOSE 8088
-ENTRYPOINT ["java","-jar","/app.jar"]
 # 运行main类
-#CMD java -jar sddm-archive-0.0.1.jar
-
+CMD java -jar sddm-archive-0.0.1.jar
