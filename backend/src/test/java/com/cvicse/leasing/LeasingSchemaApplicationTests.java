@@ -51,67 +51,64 @@ public class LeasingSchemaApplicationTests {
     @Autowired
     SchemaService schemaService;
 
-//    @Before
-//    public void beforeTest(){
-//        JSONObject A = new JSONObject();
-//        JSONArray B = new JSONArray();
-//        JSONObject D = new JSONObject();
-//        JSONArray C = new JSONArray();
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("name","wdy");
-//        jsonObject.put("age","25");
-//        C.add(jsonObject);
-////        D.put("content",C);
-////        B.add(D);
-//        jsonObject = new JSONObject();
-//        jsonObject.put("name","wg");
-//        jsonObject.put("age","23");
-//        C.add(jsonObject);
-//        D.put("stu",C);
-//        D.put("type","1997");
+    @Test
+    public void beforeTest(){
+        JSONObject A = new JSONObject();
+        JSONArray B = new JSONArray();
+        JSONObject D = new JSONObject();
+        JSONArray C = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name","wdy");
+        jsonObject.put("age","25");
+        C.add(jsonObject);
+//        D.put("content",C);
 //        B.add(D);
-//        jsonObject = new JSONObject();
-//        jsonObject.put("name","czff");
-//        jsonObject.put("age","210");
-//        C = new JSONArray();
-//        C.add(jsonObject);
-//        D = new JSONObject();
-//        D.put("stu",C);
-//        D.put("type","1990");
-//        B.add(D);
-//        A.put("i2ec",B);
-//        A.put("sdkVersion","1");
-//        A.put("title","i2ec");
-//        documentService.createDocument("125",A);
-//    }
+        jsonObject = new JSONObject();
+        jsonObject.put("name","wg");
+        jsonObject.put("age","23");
+        C.add(jsonObject);
+        D.put("stu",C);
+        D.put("type","1997");
+        B.add(D);
+        jsonObject = new JSONObject();
+        jsonObject.put("name","czff");
+        jsonObject.put("age","210");
+        C = new JSONArray();
+        C.add(jsonObject);
+        D = new JSONObject();
+        D.put("stu",C);
+        D.put("type","1990");
+        B.add(D);
+        A.put("i2ec",B);
+        A.put("sdkVersion","1");
+        A.put("title","i2ec");
+        documentService.createDocument("124",A);
+    }
 
     @Test
     public void updateEmbeddedDocument(){
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name","xiaomi");
-        jsonObject.put("age","2");
         JSONArray jsonArray = new JSONArray();
         JSONObject i = new JSONObject();
         i.put("key","first.type");
-        i.put("value","cool");
+        i.put("value","1997");
         jsonArray.add(i);
-        i=new JSONObject();
-        i.put("key","second.name");
-        i.put("value","xiaomin");
-        jsonArray.add(i);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("key","name");
+        jsonObject.put("value","wdy");
         JSONObject params = new JSONObject();
-        params.put("type","update");
-        params.put("location","data.i2ec.$[first].stu.$[second]");
+        params.put("type","delete");
+        params.put("location","data.i2ec.$[first].stu");
         params.put("content",jsonObject);
         params.put("filterFactors",jsonArray);
-        String  id = "5e65d2c9f1585a838d803b49";
+        String  id = "5e69d19e721a941419527cfc";
         documentService.updateEmbeddedDocument(id,"i2ec",params);
 //        Query query = new Query();
 //        query.addCriteria(Criteria.where("schemaId").is("125"));
 //        Update update = new Update();
-//        update.push("data.i2ec.$[first].stu", jsonObject);
-//        update.filterArray("first.type","cool");
-////        update.filterArray("second.name","tc");
+//        update.push("data.i2ec", jsonObject);
+//        update.pull("data.i2ec.$[first].stu",Query.query(Criteria.where("name").is("scc")).getQueryObject());
+//        update.filterArray("first.type","1990");
+//        update.filterArray("second.name","tc");
 //        mongoTemplate.upsert(query,update,"i2ec");
     }
 
